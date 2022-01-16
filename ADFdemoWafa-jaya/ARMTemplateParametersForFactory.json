@@ -4,6 +4,9 @@
 	"parameters": {
 		"factoryName": {
 			"value": "ADFdemoWafa-jaya"
+		},
+		"AzureBlobStorage_ls_connectionString": {
+			"value": ""
 		}
 	}
 }

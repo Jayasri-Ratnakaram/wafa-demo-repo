@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "ADFdemoWafa-jaya"
 		},
+		"AzureBlobStorage_ls_connectionString": {
+			"value": ""
+		},
 		"containerUri": {
 			"value": ""
 		},
