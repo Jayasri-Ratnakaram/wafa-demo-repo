@@ -1,0 +1,19 @@
+{
+	"name": "productspipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 17
+				}
+			}
+		],
+		"annotations": [
+			"products"
+		]
+	}
+}
