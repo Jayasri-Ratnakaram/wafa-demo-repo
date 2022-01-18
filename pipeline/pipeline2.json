@@ -14,8 +14,9 @@
 					"secureInput": false
 				},
 				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "sp"
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase_ls",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
