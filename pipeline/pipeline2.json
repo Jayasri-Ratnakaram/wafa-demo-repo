@@ -14,12 +14,40 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "sp"
+				},
 				"linkedServiceName": {
 					"referenceName": "AzureSqlDatabase_ls",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Stored procedure1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "ErrorMessage",
+					"value": {
+						"value": "@string(activity('Stored procedure1'))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"ErrorMessage": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
