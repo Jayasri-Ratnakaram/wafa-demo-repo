@@ -1,0 +1,27 @@
+{
+	"name": "ds_inp_file",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "input",
+				"container": "demo-container"
+			}
+		}
+	}
+}
