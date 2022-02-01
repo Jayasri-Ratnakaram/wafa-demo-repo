@@ -1,0 +1,37 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "emp_data",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_output",
+						"type": "DatasetReference"
+					},
+					"name": "Target"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "hashcolonSource"
+				},
+				{
+					"name": "hashcolTarget"
+				},
+				{
+					"name": "Exists1"
+				}
+			],
+			"script": "source(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> Target\nsource1 derive(HashcolSource = sha2(256, columns())) ~> hashcolonSource\nTarget derive(hashcoltarger = sha2(256, columns())) ~> hashcolTarget\nhashcolonSource, hashcolTarget exists(HashcolSource == hashcoltarger,\n\tnegate:true,\n\tbroadcast: 'auto')~> Exists1"
+		}
+	}
+}
