@@ -1,0 +1,24 @@
+{
+	"name": "dataflow4",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "gen2",
+						"type": "DatasetReference"
+					},
+					"name": "emp"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(output(\n\t\tnumber as string,\n\t\tfirst_name as string,\n\t\tlast_name as string,\n\t\tgender as string,\n\t\tbirth_date as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> emp\nemp derive(LastLoginEst = toTimestamp('birth_date', 'yyyy-MM-dd HH:mm:ss')-hours(4),\n\tpartitionBy('hash', 1)) ~> DerivedColumn1"
+		}
+	}
+}
